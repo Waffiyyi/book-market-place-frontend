@@ -105,9 +105,9 @@ export const searchBooks = createAsyncThunk(
 
 export const filterBooks = createAsyncThunk(
   "book/filterBooks",
-  async (category, jwt, {rejectWithValue}) => {
+  async (query, jwt, {rejectWithValue}) => {
     try {
-      const {data} = await api.get(`/filter-book`, {params: {query: category}},{
+      const {data} = await api.get(`/filter-book?query=${query}`,{
         headers: {
           Authorization: `Bearer ${jwt}`
         }});

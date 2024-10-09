@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const API_URL = "http://localhost:8015";
+export const API_URL = "https://book-market-place-backend.onrender.com";
 
 export const api = axios.create(
     {

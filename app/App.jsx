@@ -21,8 +21,6 @@ export default function App({ children }) {
 
   useEffect(() => {
     if (jwt === null && localJwt === null) {
-      // dispatch(logout)
-      // dispatch(bookLogoutAction)
       router.push("/auth/login");
     }
   }, [router, jwt, localJwt]);
