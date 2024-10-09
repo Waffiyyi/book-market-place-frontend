@@ -1,21 +1,22 @@
 "use client";
 import React from 'react';
-import {TextField, Button} from '@mui/material';
-import {Field, Form, Formik} from "formik";
+import { TextField, Button } from '@mui/material';
+import { Field, Form, Formik } from "formik";
 import Link from "next/link";
-import {useDispatch, useSelector} from "react-redux";
-import {useRouter} from "next/navigation";
-import {loginUser, registerUser} from "@/app/redux/slice/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
+import { loginUser } from "@/app/redux/slice/authSlice";
 
 const initialValues = {
-  email: "", password: "",
+  email: "",
+  password: "",
 };
 
 const textFieldStyles = {
   position: 'relative',
-  left: '50px',
-  marginLeft: '-50px',
-  width: 'calc(100% + 50px)',
+  left: { xs: '12px', sm: '50px', md: '65px' },
+  marginLeft: { xs: '-12px', sm: '-50px', md: '-65px' },
+  width: { xs: 'calc(100% + 12px)', sm: 'calc(100% + 50px)', md: 'calc(100% + 65px)' },
   '& .MuiInputBase-root': {
     borderBottom: '2px solid black',
   },
@@ -35,40 +36,37 @@ const textFieldStyles = {
 
 const Login = () => {
   const dispatch = useDispatch();
-  const {isLoading} = useSelector((state) => state.auth);
+  const { isLoading } = useSelector((state) => state.auth);
   const router = useRouter();
+
   const handleSubmit = (values) => {
     const userData = {
-       username: values.email, password: values.password,
+      username: values.email,
+      password: values.password,
     };
-    dispatch(loginUser({userData, router}));
+    dispatch(loginUser({ userData, router }));
   };
 
   return (
-    <div id={"login"} className='flex justify-center items-center h-screen bg-[#0D0D0D] px-4 sm:px-8'>
+    <div id="login" className='flex justify-center items-center h-screen bg-[#0D0D0D] px-4 sm:px-8'>
       <div className='relative shadow-lg w-[700px] h-[450px] flex overflow-hidden'>
-        <div
-          className='bg-white p-8 flex flex-col justify-center rounded-l-lg relative z-10'
-          style={{width: "30%"}}
-        >
+        <div className='bg-white p-8 flex flex-col justify-center rounded-l-lg relative z-10' style={{ width: "30%" }}>
           <h2 className='text-2xl font-semibold mb-6 text-black text-start'>Login</h2>
 
           <Formik onSubmit={handleSubmit} initialValues={initialValues}>
             <Form>
               <Field
                 as={TextField}
-                name={"email"}
-                label={"Email"}
+                name="email"
+                label="Email"
                 fullWidth
-                variant={"standard"}
-                margin={"normal"}
+                variant="standard"
+                margin="normal"
                 InputLabelProps={{
-                  style: {color: 'black'},
+                  style: { color: 'black' },
                 }}
                 InputProps={{
-                  style: {
-                    color: 'black',
-                  },
+                  style: { color: 'black' },
                   placeholder: 'Enter your email',
                 }}
                 sx={textFieldStyles}
@@ -77,32 +75,38 @@ const Login = () => {
 
               <Field
                 as={TextField}
-                name={"password"}
-                label={"Password"}
+                name="password"
+                label="Password"
                 fullWidth
-                variant={"standard"}
-                type={"password"}
-                margin={"normal"}
+                variant="standard"
+                type="password"
+                margin="normal"
                 InputLabelProps={{
-                  style: {color: 'black'},
+                  style: { color: 'black' },
                 }}
                 InputProps={{
-                  style: {
-                    color: 'black',
-                  },
+                  style: { color: 'black' },
                   placeholder: 'Enter your password',
                 }}
                 sx={textFieldStyles}
                 multiline={false}
               />
 
-              <div className='flex justify-center'>
+              <div className='flex w-60'>
                 <Button
                   type='submit'
                   variant='contained'
                   disabled={isLoading}
                   sx={{
-                    borderRadius: '20px', bgcolor: 'black', color: 'white', mt: 3,
+                    width: {
+                      xs: '40%',
+                      sm: '70%',
+                      md: '100%',
+                    },
+                    borderRadius: '5px',
+                    bgcolor: 'black',
+                    color: 'white',
+                    mt: 3,
                     '&:hover': {
                       bgcolor: 'darkgray',
                     },
@@ -113,16 +117,13 @@ const Login = () => {
               </div>
             </Form>
           </Formik>
-
-          <span className={'text-sm text-black mt-5'}>
+          <span className='text-sm text-black mt-5 w-60'>
             Don’t have an account?
-            <Link
-              href='/auth/signup'
-              className='text-sm text-black cursor-pointer block text-start mt-1'
-            >
+            <Link href='/auth/signup' className='text-sm text-black cursor-pointer block text-start mt-1'>
               Sign up
             </Link>
           </span>
+
         </div>
 
         <div
@@ -135,7 +136,7 @@ const Login = () => {
             width: "70%",
           }}
         >
-          <div className={'w-[25%]'}>
+          <div className='w-[55%]'>
             <h2 className='text-xl font-bold mb-2 text-end'>WELCOME BACK!</h2>
             <p className='text-sm text-end text-gray-600'>
               Great to see you again, genius.

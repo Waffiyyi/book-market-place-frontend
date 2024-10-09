@@ -13,7 +13,11 @@ const initialValues = {
 };
 
 const textFieldStyles = {
-  position: 'relative', right: '50px', width: 'calc(100% + 50px)', '& .MuiInputBase-root': {
+  position: 'relative',
+  right: { xs: '12px', sm: '30px', md: '35px' },
+  marginLeft: { xs: '-12px', sm: '-30px', md: '-35px' },
+  width: { xs: 'calc(100% + 12px)', sm: 'calc(100% + 30px)', md: 'calc(100% + 35px)' },
+  '& .MuiInputBase-root': {
     borderBottom: '2px solid black',
   }, '& .MuiInputBase-root:before': {
     borderBottom: 'none',
@@ -39,21 +43,21 @@ const Signup = () => {
   };
 
 
-  return (<div className='flex justify-center items-center h-screen bg-[#0D0D0D] px-4 sm:px-8'>
-    <div className='relative shadow-lg w-[700px] h-[450px] flex overflow-hidden'>
+  return (<div className='flex justify-center items-center h-screen bg-[#0D0D0D] px-4 sm:px-8 '>
+    <div className='relative shadow-lg w-[700px] h-[500px] flex overflow-hidden'>
       <div
         className='bg-black p-8 flex flex-col justify-center text-white relative z-10'
         style={{
-          clipPath: 'polygon(0 0, 100% 0, 25% 100%, 0% 100%)', textAlign: 'left', width: '60%',
+          clipPath: 'polygon(0 0, 100% 0, 35% 100%, 0% 100%)', textAlign: 'left', width: '60%',
         }}
       >
-        <div className={'w-[25%]'}>
+        <div className={'w-[55%]'}>
           <h2 className='text-xl font-bold mb-2 text-start'>WELCOME!</h2 >
           <p className='text-sm text-start text-gray-400'>
             We are guessing you&apos;re bookworm like us, you&apos;re in the right place!
           </p >
-          <p className='text-sm text-start mt-1 text-gray-600'>
-            Signup to get started.
+          <p className='text-sm text-start mt-1 text-gray-600 mr-6'>
+            Signup to get started
           </p >
         </div >
       </div >
@@ -62,7 +66,7 @@ const Signup = () => {
         className='bg-white p-8 flex flex-col justify-center rounded-r-lg relative z-10'
         style={{width: '40%'}}
       >
-        <h2 className='text-2xl font-semibold mb-6 text-black text-center'>Sign Up</h2 >
+        <h2 className='text-2xl font-semibold mb-1 mt-2 text-black text-center'>Sign Up</h2 >
 
         <Formik onSubmit={handleSubmit} initialValues={initialValues}>
           <Form >
@@ -125,10 +129,11 @@ const Signup = () => {
             />
             <div className={'flex justify-center'}>
               <Button
+                className={'w-60 h-12 sm:w-60'}
                 type='submit'
                 variant='contained'
                 sx={{
-                  borderRadius: '20px', bgcolor: 'black', color: 'white', width: 'calc(100% + 50px)', mt: 3, '&:hover': {
+                  borderRadius: '5px', bgcolor: 'black', color: 'white', mt: 3, '&:hover': {
                     bgcolor: 'darkgray',
                   },
                 }}
@@ -141,10 +146,10 @@ const Signup = () => {
         </Formik >
 
 
-        <span className={'text-sm text-black  mt-5'}>
+        <span className={'text-sm text-black text-center  mt-3'}>
                   Already have an account?
             <Link
-              href='/auth/login' className='text-sm text-black cursor-pointer text-center block'
+              href='/auth/login' className='text-sm text-black cursor-pointer text-center mb-3 block'
             >
              Login
             </Link >
