@@ -45,7 +45,7 @@ const Login = () => {
   };
 
   return (
-    <div id={"login"} className='flex justify-center items-center h-screen bg-[#0D0D0D]'>
+    <div id={"login"} className='flex justify-center items-center h-screen bg-[#0D0D0D] px-4 sm:px-8'>
       <div className='relative shadow-lg w-[700px] h-[450px] flex overflow-hidden'>
         <div
           className='bg-white p-8 flex flex-col justify-center rounded-l-lg relative z-10'
