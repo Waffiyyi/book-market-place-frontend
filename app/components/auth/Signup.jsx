@@ -50,9 +50,7 @@ const Signup = () => {
         <div className={'w-[25%]'}>
           <h2 className='text-xl font-bold mb-2 text-start'>WELCOME!</h2 >
           <p className='text-sm text-start text-gray-400'>
-            We are guessing
-            you're bookworm like us,
-            you're in the right place!
+            We are guessing you&apos;re bookworm like us, you&apos;re in the right place!
           </p >
           <p className='text-sm text-start mt-1 text-gray-600'>
             Signup to get started.

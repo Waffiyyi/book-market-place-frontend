@@ -45,7 +45,7 @@ const RecentlyViewed = () => {
               width={100}
               height={100}
               className='h-52'
-              unoptimized={true}
+              quality={100}
             />
           </div>
 
