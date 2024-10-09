@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
-import AuthWrapper from "@/app/AuthWrapper";
+import App from "@/app/App";
 const theme = createTheme({
   palette: {
     mode: 'dark',
@@ -30,9 +30,9 @@ export default function ClientProvider({ children }) {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <AuthWrapper>
+        <App>
           {children}
-        </AuthWrapper>
+        </App>
       </ThemeProvider>
     </Provider>
   );

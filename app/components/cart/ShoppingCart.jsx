@@ -1,102 +1,87 @@
 "use client";
-import React from "react";
-import Image from "next/image";
+import React, {useState, useEffect} from "react";
 import Button from "@mui/material/Button";
-import { Divider } from "@mui/material";
-import Rating from "@mui/material/Rating";
+import {Divider} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
-import CartItem from "@/app/cart/CartItem";
-const cartItem = {
-  image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAxJOXvqnX1pHMd-fmJCfftyxVXHpoc6T4HBiLeRgcUr5B-b64tRG5VhMiIQJgWIcTaPE&usqp=CAU",
-  title: "The React Handbook",
-  author: "Flavio Copes",
-  price: 29.99,
-};
-const recentlyViewed = {
-  image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAxJOXvqnX1pHMd-fmJCfftyxVXHpoc6T4HBiLeRgcUr5B-b64tRG5VhMiIQJgWIcTaPE&usqp=CAU",
-  title: "JavaScript: The Good Parts",
-  author: "Douglas Crockford",
-  price: 19.99,
-  genre: "Programming",
-  rating: 3.5,
-};
+import CartItem from "@/app/components/cart/CartItem";
+import RecentlyViewed from "@/app/components/cart/RecentlyViewed";
+import {checkoutCart} from "@/app/redux/slice/cartSlice";
+
 const ShoppingCart = () => {
   const dispatch = useDispatch();
-  const { cart } = useSelector((state) => state.cart);
+  const {cart, cartItems, loading} = useSelector((state) => state.cart);
+  const [isMounted, setIsMounted] = useState(false);
   let jwt = null;
+
   if (typeof window !== 'undefined') {
     jwt = localStorage.getItem("jwt");
   }
+  console.log("cart", cart)
 
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
+  if (!isMounted) return null;
+  const handleCheckout = () => {
+    const reqData = {
+      cart,
+      dispatch,
+      jwt
+    }
+    dispatch(checkoutCart(reqData))
+    console.log("cart in checkout", cart)
+  }
   return (
-    <div className='p-6 bg-black text-white max-w-5xl mx-auto rounded-lg shadow-lg'>
-      <div className='flex justify-between'>
-        <div>
-          <div className='flex justify-between'>
-            <h1 className='text-3xl font-bold mb-6'>Shopping Cart</h1>
-            <p className='text-xl mr-5'>Price</p>
-          </div>
+    <div
+      className='bg-black text-white max-w-5xl mx-auto p-4 sm:p-6 md:p-8 rounded-lg shadow-lg'
+    >
+      <div className='flex flex-col lg:flex-row justify-between'>
+        <div className='w-full lg:w-2/3 flex flex-col justify-between'>
+          <div className='flex justify-between items-center mb-6'>
+            <h1 className='text-xl sm:text-2xl font-bold'>Shopping Cart</h1 >
+            <p className='text-lg sm:text-xl font-semibold mr-3 sm:mr-5'>Price</p >
+          </div >
 
-         <CartItem/>
+          {cartItems.map((item) => (
+            <CartItem key={item.id} cartItem={item}/>
+          ))}
 
-          <Divider sx={{ bgcolor: "white", height: "1px", margin: "0" }} />
+          <Divider sx={{bgcolor: "white", height: "1px", margin: "20px 0"}}/>
 
-          <div className='flex justify-end align-middle gap-4 items-center mt-5'>
-            <p className='text-sm'>Subtotal</p>
-            <p className='text-normal font-bold'>${cartItem.price}</p>
-          </div>
+          <div className='flex justify-end items-center gap-3 mt-1 mr-3 sm:mr-5 mb-5'>
+            <p className='text-sm sm:text-base font-light'>Subtotal</p >
+            <p className='text-base sm:text-lg font-bold'>${cart?.total}</p >
+          </div >
 
           <Button
             variant='contained'
-            sx={{ color: 'white', bgcolor: '#d511e8' }}
-            className='mt-4 w-full font-bold'
+            onClick={handleCheckout}
+            disabled={loading}
+            sx={{
+              color: "white",
+              bgcolor: "#d511e8",
+              height: "40px",
+              width: {xs: "100%", sm: "100%", md: "600px"},
+            }}
+            className='py-2 text-normal font-bold'
           >
             Proceed to Checkout
-          </Button>
-        </div>
+          </Button >
+        </div >
 
-        <Divider sx={{ bgcolor: "white", width: "0.5px" }} orientation='vertical' flexItem />
+        <Divider
+          sx={{bgcolor: "white", width: "1px"}}
+          orientation='vertical'
+          flexItem
+          className='hidden lg:block'
+        />
 
-        <div className='bg-gray-800 rounded-lg p-2 h-52' style={{ borderRadius: '20px' }}>
-          <h2 className='text-lg font-bold mb-0'>Recently Viewed By You</h2>
-          <div className='flex items-start space-x-2'>
-            <div>
-              <Image
-                src={recentlyViewed.image}
-                alt={recentlyViewed.title}
-                width={100}
-                height={120}
-                className='rounded-md h-42'
-                unoptimized={true}
-              />
-            </div>
-
-            <div className=''>
-              <span className='text-sm text-gray-400 block mb-1'>{recentlyViewed.genre}</span>
-              <h3 className='text-md font-bold text-gray-300'>{recentlyViewed.title}</h3>
-              <p className='text-gray-500'>By {recentlyViewed.author}</p>
-              <Rating
-                name='read-only'
-                value={recentlyViewed.rating}
-                readOnly
-                precision={0.5}
-                size='small'
-                sx={{ color: '#d511e8' }}
-              />
-              <p className='text-xs font-bold mt-0'>${recentlyViewed.price}</p>
-              <Button
-                variant='contained'
-                sx={{ color: 'white', bgcolor: '#d511e8', height:'30px' }}
-                className='mt-2 font-bold'
-              >
-                Add to Cart
-              </Button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+        <div className='w-full lg:w-1/3 pl-0 lg:pl-6 mt-8 lg:mt-0'>
+          <RecentlyViewed />
+        </div >
+      </div >
+    </div >
   );
 };
 

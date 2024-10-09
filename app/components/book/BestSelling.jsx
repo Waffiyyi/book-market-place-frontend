@@ -7,7 +7,6 @@ import Book from "@/app/components/book/Book";
 const BestSelling = () => {
   const dispatch = useDispatch();
   const { books } = useSelector((state) => state.book);
-
   let jwt = null;
   if (typeof window !== 'undefined') {
     jwt = localStorage.getItem("jwt");
@@ -24,9 +23,10 @@ const BestSelling = () => {
       {books.slice(0, 6).map((book) => (
         <Book
           key={book.id}
+          id={book.id}
           image={book.image}
           genre={book.genre}
-          title={book.tittle}
+          title={book.title}
           author={book.author}
           price={book.price}
         />

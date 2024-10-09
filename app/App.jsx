@@ -4,12 +4,16 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from 'react';
 import {findUserCart, logout} from "@/app/redux/slice/cartSlice";
 import {bookLogoutAction} from "@/app/redux/slice/bookSlice";
-import {getUser} from "@/app/redux/slice/authSlice";
+import {checkTokenExpirationMiddleware, getUser} from "@/app/redux/slice/authSlice";
 
-export default function AuthWrapper({ children }) {
+export default function App({ children }) {
   const {jwt, isLoading} = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const router = useRouter();
+  useEffect(() => {
+    dispatch(checkTokenExpirationMiddleware());
+  }, [dispatch]);
+
   let localJwt = null;
   if (typeof window !== 'undefined') {
     localJwt = localStorage.getItem("jwt");
