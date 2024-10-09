@@ -1,5 +1,5 @@
-"use client"
-import React, {useEffect, useState} from 'react';
+"use client";
+import React, {useEffect} from 'react';
 import Book from "@/app/components/book/Book";
 import {useDispatch, useSelector} from "react-redux";
 import {getFrequentlyBoughtWith} from "@/app/redux/slice/bookSlice";
@@ -11,24 +11,33 @@ const FrequentlyBoughtBooks = () => {
   if (typeof window !== 'undefined') {
     jwt = localStorage.getItem("jwt");
   }
-  useEffect(()=>{
-    dispatch(getFrequentlyBoughtWith(jwt))
-  },[jwt, dispatch])
-  return (
-    <div className='grid grid-cols-6 gap-4'>
-      {books.map((book)=>
-        <Book
-          key={book.id}
-          id={book.id}
-          image={book.image}
-          genre={book.genre}
-          title={book.title}
-          author={book.author}
-          price={book.price}
-        />
-      )}
 
-    </div >
+  useEffect(() => {
+    if (jwt) {
+      dispatch(getFrequentlyBoughtWith(jwt));
+    }
+  }, [jwt, dispatch]);
+
+  return (
+    <div>
+      {books.length === 0 ? (
+        <p className={'text-gray-400'}>You have not purchased a book from any author.</p>
+      ) : (
+        <div className='grid grid-cols-6 gap-4'>
+          {books.map((book) => (
+            <Book
+              key={book.id}
+              id={book.id}
+              image={book.image}
+              genre={book.genre}
+              title={book.title}
+              author={book.author}
+              price={book.price}
+            />
+          ))}
+        </div>
+      )}
+    </div>
   );
 };
 
