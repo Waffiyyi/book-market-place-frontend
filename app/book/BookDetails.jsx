@@ -40,13 +40,12 @@ const BookDetail = () => {
 
   const handleAddToCart = async () => {
     const reqData = {
-      bookId: id,
+      bookId: book.id,
       quantity: 1,
-      jwt,
+      jwt
     };
-
     try {
-      const actionResult = await dispatch(addItemToCart({ reqData, dispatch }));
+      const actionResult = await dispatch(addItemToCart({ reqData}));
       const result = unwrapResult(actionResult);
       console.log("result", result);
       setModalOpen(true);

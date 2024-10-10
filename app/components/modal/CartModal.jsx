@@ -93,7 +93,7 @@ const CartModal = ({ open, onClose, book, subtotal }) => {
               }}
               variant='contained'
               color='secondary'
-              className='w-full text-white font-bold hover:bg-purple-300'
+              className='w-full text-white font-bold hover:bg-purple-500'
             >
               Proceed to Checkout
             </Button>

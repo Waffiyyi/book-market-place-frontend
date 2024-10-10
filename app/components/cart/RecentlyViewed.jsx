@@ -10,6 +10,7 @@ const RecentlyViewed = () => {
   const dispatch = useDispatch();
   const [prevBookId, setPrevBookId] = useState(null);
   const { book } = useSelector((state) => state.book);
+  const { loading } = useSelector((state) => state.cart);
   let jwt = null;
   if (typeof window !== 'undefined') {
     jwt = localStorage.getItem("jwt");
@@ -23,15 +24,15 @@ const RecentlyViewed = () => {
         dispatch(fetchBook({bookId: randomBookId, jwt}));
         setPrevBookId(randomBookId);
     }
-  }, [dispatch, prevBookId]);
-  const handleAddToCart= ()=> {
+  }, [dispatch, jwt, prevBookId]);
+  const handleAddToCart = () => {
     const reqData = {
-      bookId:book.id,
+      bookId: book.id,
       quantity: 1,
       jwt
-    }
-    dispatch(addItemToCart({reqData}));
-  }
+    };
+    dispatch(addItemToCart({ reqData }))
+  };
 
   return (
     <div className='bg-gray-800 rounded-lg p-2 h-62' style={{ borderRadius: '20px' }}>
@@ -63,6 +64,7 @@ const RecentlyViewed = () => {
             />
             <p className='text-xs font-bold mt-0'>${book?.price}</p>
             <Button
+              disabled={loading}
               variant='contained'
               sx={{ color: 'white', bgcolor: '#d511e8', height: '30px' }}
               className='mt-2 font-bold'

@@ -27,7 +27,7 @@ const FeaturedCategory = () => {
   return (
     <>
       {displayedCategories.map((category) => {
-        const { icon, color, glowColor } = categoryProperties[category.name] || {
+        const { icon, color, glowColor } = categoryProperties[category] || {
           icon: '📚',
           color: '#9e9e9e',
           glowColor: '#e0e0e0', };

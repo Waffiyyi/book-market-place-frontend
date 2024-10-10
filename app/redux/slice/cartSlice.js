@@ -28,21 +28,22 @@ export const findUserCart = createAsyncThunk(
 
 export const addItemToCart = createAsyncThunk(
   "cart/addItemToCart",
-  async ({reqData, dispatch}, {rejectWithValue}) => {
+  async ({ reqData }, { dispatch, rejectWithValue }) => {
     try {
-      const {data} = await api.put(`/cart/add`, reqData, {
-        headers: {Authorization: `Bearer ${reqData.jwt}`},
+      const { data } = await api.put(`/cart/add`, reqData, {
+        headers: { Authorization: `Bearer ${reqData.jwt}` },
       });
-      dispatch(findUserCart(reqData.jwt))
+      // Automatically fetch the updated cart after adding the item
+      dispatch(findUserCart(reqData.jwt));
       return data;
     } catch (error) {
-      console.log(":err", error)
       return rejectWithValue(
-        error.response?.data?.message || error.message,
+        error.response?.data?.message || error.message
       );
     }
-  },
+  }
 );
+
 
 export const updateCartItem = createAsyncThunk(
   "cart/updateCartItem",
