@@ -68,10 +68,10 @@ const CartModal = ({ open, onClose, book, subtotal }) => {
             </div>
           </div>
           <Image
-            src={book.image}
-            alt={book.title}
-            width={80}
-            height={120}
+            src={book?.image}
+            alt={book?.title}
+            width={100}
+            height={100}
             className='rounded-md'
             unoptimized={true}
           />

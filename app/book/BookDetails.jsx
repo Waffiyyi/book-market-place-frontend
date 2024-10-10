@@ -14,22 +14,19 @@ const BookDetail = () => {
   const dispatch = useDispatch();
   const { book } = useSelector((state) => state.book);
   const { loading, cart } = useSelector((state) => state.cart);
-  const [mounted, setMounted] = useState(false);
   const params = useParams();
   const [modalOpen, setModalOpen] = useState(false);
   const { id } = params;
-  const [jwt, setJwt] = useState(null);
+  let jwt = null;
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setJwt(localStorage.getItem("jwt"));
-      setMounted(true);
-    }
-  }, []);
+  if (typeof window !== 'undefined') {
+    jwt = localStorage.getItem("jwt");
+  }
 
   useEffect(() => {
     if (id && jwt) {
       dispatch(fetchBook({ bookId: id, jwt }));
+
       const recentBooks = JSON.parse(localStorage.getItem("recentlyViewedBooks")) || [];
       const updatedBooks = recentBooks.filter(bookId => bookId !== id);
       updatedBooks.unshift(id);
@@ -56,7 +53,7 @@ const BookDetail = () => {
       console.log("Failed to add to cart:", error);
     }
   };
-  if (!mounted) return null;
+
   return (
     <div
       className="bg-[#0D0D0D] p-6 text-white max-w-4xl mx-auto rounded-md shadow-lg space-y-4"
