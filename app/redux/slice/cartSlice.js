@@ -96,14 +96,13 @@ export const clearCart = createAsyncThunk(
 
 export const checkoutCart = createAsyncThunk(
   "cart/checkoutCart",
-  async (reqData, {rejectWithValue}) => {
+  async (reqData, {dispatch, rejectWithValue}) => {
     try {
       const {data} = await api.post(`/payment-checkout`, reqData.cartDTO, {
         headers: {Authorization: `Bearer ${reqData.jwt}`},
       });
       if (data.payment_url) {
         window.location.href = data.payment_url;
-        reqData.dispatch(clearCart(reqData.jwt))
       }
     } catch (error) {
       return rejectWithValue(

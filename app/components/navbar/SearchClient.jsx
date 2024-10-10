@@ -139,7 +139,7 @@ export default function SearchClient() {
           <div>
             {user && (
               <IconButton onClick={() => router.push("/cart")}>
-                <Badge sx={{color: '#d511e8'}} badgeContent={cart?.items.length}>
+                <Badge sx={{color: '#d511e8'}} badgeContent={cart?.items?.length}>
                   <ShoppingCartIcon sx={{fontSize: '1.5rem', color: '#ffffff'}} />
                 </Badge>
               </IconButton>
