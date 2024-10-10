@@ -68,8 +68,8 @@ const CartModal = ({ open, onClose, book, subtotal }) => {
             </div>
           </div>
           <Image
-            src={book?.image}
-            alt={book?.title}
+            src={book.image}
+            alt={book.title}
             width={80}
             height={120}
             className='rounded-md'
@@ -95,6 +95,7 @@ const CartModal = ({ open, onClose, book, subtotal }) => {
                 '&.Mui-disabled': {
                   bgcolor: '#efe4f0',
                   color: '#d511e8',
+                  borderColor:'#d511e8'
                 }
               }}
               variant='contained'

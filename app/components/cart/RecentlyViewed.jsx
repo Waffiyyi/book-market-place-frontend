@@ -8,10 +8,11 @@ import {addItemToCart} from "@/app/redux/slice/cartSlice";
 
 const RecentlyViewed = () => {
   const dispatch = useDispatch();
-  const [prevBookId, setPrevBookId] = useState(null);
+  const [randomBookId, setRandomBookId] = useState(null);
   const { book } = useSelector((state) => state.book);
   const { loading } = useSelector((state) => state.cart);
   let jwt = null;
+
   if (typeof window !== 'undefined') {
     jwt = localStorage.getItem("jwt");
   }
@@ -20,18 +21,24 @@ const RecentlyViewed = () => {
     const recentBookIds = JSON.parse(localStorage.getItem('recentlyViewedBooks')) || [];
     if (recentBookIds.length > 0) {
       const randomIndex = Math.floor(Math.random() * recentBookIds.length);
-      const randomBookId = recentBookIds[randomIndex];
-        dispatch(fetchBook({bookId: randomBookId, jwt}));
-        setPrevBookId(randomBookId);
+      const selectedBookId = recentBookIds[randomIndex];
+      setRandomBookId(selectedBookId);
     }
-  }, [dispatch, jwt, prevBookId]);
+  }, []);
+
+  useEffect(() => {
+    if (randomBookId && jwt) {
+      dispatch(fetchBook({bookId: randomBookId, jwt}));
+    }
+  }, [randomBookId, jwt, dispatch]);
+
   const handleAddToCart = () => {
     const reqData = {
       bookId: book.id,
       quantity: 1,
       jwt
     };
-    dispatch(addItemToCart({ reqData }))
+    dispatch(addItemToCart({ reqData }));
   };
 
   return (
