@@ -42,7 +42,7 @@ const ShoppingCart = () => {
     const reqData = {
       cartDTO:{
       id:cart.id,
-        userId:cart.customer?.id,
+        userId:cart.userId,
         total:cart.total,
         items:cart.items
 
