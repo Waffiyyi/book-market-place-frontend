@@ -70,7 +70,7 @@ export default function SearchClient() {
     <AppBar position='static' sx={{ backgroundColor: 'black' }}>
       <Toolbar className='px-5 sticky top-0 z-50 py-[.8rem] lg:px-20 flex justify-between'>
         <div>
-          <IconButton onClick={() => router.push("/")} edge='start' className='text-white'>
+          <IconButton onClick={jwt ? () => router.push("/"): undefined} edge='start' className='text-white'>
             <AutoStoriesIcon />
           </IconButton>
         </div>
