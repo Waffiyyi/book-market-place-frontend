@@ -2,11 +2,12 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useDispatch, useSelector } from "react-redux";
-import {getBestSellingBooks, getFeaturedBooks} from "@/app/redux/slice/bookSlice";
+import { getFeaturedBooks } from "@/app/redux/slice/bookSlice";
 
 const FeaturedBanner = () => {
   const dispatch = useDispatch();
   const { featuredBooks } = useSelector((state) => state.book);
+
   let jwt = null;
   if (typeof window !== 'undefined') {
     jwt = localStorage.getItem("jwt");
@@ -18,24 +19,35 @@ const FeaturedBanner = () => {
     }
   }, [dispatch, jwt]);
 
-  const initialBooks = featuredBooks.slice(0, 10);
+  const [initialBooks, setInitialBooks] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [bottomBook, setBottomBook] = useState(initialBooks[0]);
+  const [bottomBook, setBottomBook] = useState(null);
+
+  useEffect(() => {
+    if (featuredBooks.length > 0) {
+      const initial = featuredBooks.slice(0, 10);
+      setInitialBooks(initial);
+      setBottomBook(initial[0]);
+    }
+  }, [featuredBooks]);
 
   const nextBook = () => {
-    setCurrentIndex(prevIndex => (prevIndex + 1) % initialBooks.length);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % initialBooks.length);
   };
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      nextBook();
-    }, 5000);
-
-    return () => clearInterval(interval);
+    if (initialBooks.length > 0) {
+      const interval = setInterval(() => {
+        nextBook();
+      }, 5000);
+      return () => clearInterval(interval);
+    }
   }, [initialBooks]);
 
   useEffect(() => {
-    setBottomBook(initialBooks[currentIndex]);
+    if (initialBooks.length > 0) {
+      setBottomBook(initialBooks[currentIndex]);
+    }
   }, [currentIndex, initialBooks]);
 
   return (
