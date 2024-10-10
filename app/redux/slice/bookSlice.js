@@ -4,6 +4,8 @@ import {api, API_URL} from "@/app/config/api";
 
 const initialState = {
   books: [],
+  featuredBooks:[],
+  bestSellingBooks:[],
   categories:[],
   book: null,
   isLoading: false,
@@ -320,7 +322,7 @@ export const bookSlice = createSlice({
     })
     .addCase(getBestSellingBooks.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.books = action.payload;
+      state.bestSellingBooks = action.payload;
     })
     .addCase(getBestSellingBooks.rejected, (state, action) => {
       state.isLoading = false;
@@ -332,7 +334,7 @@ export const bookSlice = createSlice({
     })
     .addCase(getFeaturedBooks.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.books = action.payload;
+      state.featuredBooks = action.payload;
     })
     .addCase(getFeaturedBooks.rejected, (state, action) => {
       state.isLoading = false;

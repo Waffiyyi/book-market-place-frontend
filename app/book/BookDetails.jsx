@@ -76,7 +76,13 @@ const BookDetail = () => {
           <p className="text-sm mb-1">Author</p>
           <p className="text-sm text-gray-600 mb-2">{book?.author}</p>
           <p className="text-sm mb-1">Date Released</p>
-          <p className="text-sm text-gray-600 mb-2">{book?.dateReleased}</p>
+          <p className="text-sm text-gray-600 mb-2">
+            {book?.dateReleased ? new Date(book.dateReleased).toLocaleDateString('en-GB', {
+              day: 'numeric',
+              month: 'short',
+              year: 'numeric',
+            }) : 'N/A'}
+          </p>
           <p className="text-sm mb-1">Category</p>
           <p className="text-sm text-gray-600 mb-2">{book?.categories}</p>
           <p className="text-sm mb-1">Ratings</p>

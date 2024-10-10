@@ -127,21 +127,31 @@ const Signup = () => {
               sx={textFieldStyles}
               multiline={false}
             />
-            <div className={'flex justify-center'}>
-              <Button
-                className={'w-60 h-12 sm:w-60'}
-                type='submit'
-                variant='contained'
-                sx={{
-                  borderRadius: '5px', bgcolor: 'black', color: 'white', mt: 3, '&:hover': {
-                    bgcolor: 'darkgray',
-                  },
-                }}
-                disabled={isLoading}
-              >
-                {isLoading ? 'Signing Up...' : 'Sign Up'}
-              </Button >
-            </div >
+            <div className={'flex justify-end'}>
+              <div style={{ width: '100%'}}>
+                <Button
+                  type='submit'
+                  variant='contained'
+                  sx={{
+                    width: '100%',
+                    borderRadius: '5px',
+                    bgcolor: 'black',
+                    color: 'white',
+                    mt: 3,
+                    '&:hover': {
+                      bgcolor: 'darkgray',
+                    },
+                    '&.Mui-disabled': {
+                      bgcolor: 'gray',
+                      color: 'white',
+                    }
+                  }}
+                  disabled={isLoading}
+                >
+                  {isLoading ? 'Signing Up...' : 'Sign Up'}
+                </Button>
+              </div>
+            </div>
           </Form >
         </Formik >
 

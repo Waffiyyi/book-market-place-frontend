@@ -50,7 +50,7 @@ const Login = () => {
   return (
     <div id="login" className='flex justify-center items-center h-screen bg-[#0D0D0D] px-4 sm:px-8'>
       <div className='relative shadow-lg w-[700px] h-[450px] flex overflow-hidden'>
-        <div className='bg-white p-8 flex flex-col justify-center rounded-l-lg relative z-10' style={{ width: "30%" }}>
+        <div className='bg-white p-8 flex flex-col justify-center rounded-l-lg relative z-10' style={{ width: "35%" }}>
           <h2 className='text-2xl font-semibold mb-6 text-black text-start'>Login</h2>
 
           <Formik onSubmit={handleSubmit} initialValues={initialValues}>
@@ -92,28 +92,30 @@ const Login = () => {
                 multiline={false}
               />
 
-              <div className='flex w-60'>
-                <Button
-                  type='submit'
-                  variant='contained'
-                  disabled={isLoading}
-                  sx={{
-                    width: {
-                      xs: '40%',
-                      sm: '70%',
-                      md: '100%',
-                    },
-                    borderRadius: '5px',
-                    bgcolor: 'black',
-                    color: 'white',
-                    mt: 3,
-                    '&:hover': {
-                      bgcolor: 'darkgray',
-                    },
-                  }}
-                >
-                  {isLoading ? 'Logging in...' : 'Log in'}
-                </Button>
+              <div className='flex justify-center'>
+                <div style={{ width: '100%'}}>
+                  <Button
+                    type='submit'
+                    variant='contained'
+                    disabled={isLoading}
+                    sx={{
+                      width: '100%',
+                      borderRadius: '5px',
+                      bgcolor: 'black',
+                      color: 'white',
+                      mt: 3,
+                      '&:hover': {
+                        bgcolor: 'darkgray',
+                      },
+                      '&.Mui-disabled': {
+                        bgcolor: 'gray',
+                        color: 'white',
+                      }
+                    }}
+                  >
+                    {isLoading ? 'Logging in...' : 'Log in'}
+                  </Button>
+                </div>
               </div>
             </Form>
           </Formik>

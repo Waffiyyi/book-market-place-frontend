@@ -6,7 +6,7 @@ import Book from "@/app/components/book/Book";
 
 const Featured = () => {
   const dispatch = useDispatch();
-  const { books } = useSelector((state) => state.book);
+  const { featuredBooks } = useSelector((state) => state.book);
   let jwt = null;
 
   if (typeof window !== 'undefined') {
@@ -19,7 +19,7 @@ const Featured = () => {
     }
   }, [dispatch, jwt]);
 
-  const displayedBooks = books.slice(0, 6);
+  const displayedBooks = featuredBooks.slice(0, 6);
 
   return (
     <div className='grid grid-cols-2 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-3'>
