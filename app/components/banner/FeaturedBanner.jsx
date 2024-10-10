@@ -2,21 +2,21 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useDispatch, useSelector } from "react-redux";
-import { getBestSellingBooks } from "@/app/redux/slice/bookSlice";
+import {getBestSellingBooks, getFeaturedBooks} from "@/app/redux/slice/bookSlice";
 
 const FeaturedBanner = () => {
   const dispatch = useDispatch();
-  const { featuredBooks } = useSelector((state) => state.book);
+  const { featuredBooks, isLoading } = useSelector((state) => state.book);
   let jwt = null;
   if (typeof window !== 'undefined') {
     jwt = localStorage.getItem("jwt");
   }
 
   useEffect(() => {
-    if (jwt) {
-      dispatch(getBestSellingBooks(jwt));
+    if (jwt && isLoading) {
+      dispatch(getFeaturedBooks(jwt));
     }
-  }, [dispatch, jwt]);
+  }, [dispatch, jwt, isLoading]);
 
   const initialBooks = featuredBooks.slice(0, 10);
   const [currentIndex, setCurrentIndex] = useState(0);
