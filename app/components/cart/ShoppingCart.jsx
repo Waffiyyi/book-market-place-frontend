@@ -52,12 +52,8 @@ const ShoppingCart = () => {
             <p className="text-lg sm:text-xl font-semibold mr-3 sm:mr-5">Price</p>
           </div>
 
-          {cartItems.map((item) => (
-            <CartItem
-              key={item.id}
-              cartItem={item}
-              updateCartItems={updateCartItems}
-            />
+          {cartItems.map((item, index) => (
+            <CartItem key={`${item.id}-${index}`} cartItem={item} updateCartItems={updateCartItems} />
           ))}
 
           <Divider sx={{ bgcolor: "white", height: "1px", margin: "20px 0" }} />
