@@ -14,9 +14,9 @@ const initialValues = {
 
 const textFieldStyles = {
   position: 'relative',
-  right: { xs: '12px', sm: '30px', md: '35px' },
-  marginLeft: { xs: '-12px', sm: '-30px', md: '-35px' },
-  width: { xs: 'calc(100% + 12px)', sm: 'calc(100% + 30px)', md: 'calc(100% + 35px)' },
+  right: { xs: '34px', sm: '54px', md: '35px' },
+  marginLeft: { xs: '-12px', sm: '-12px', md: '-35px' },
+  width: { xs: 'calc(100% + 74px)', sm: 'calc(100% + 84px)', md: 'calc(100% + 65px)' },
   '& .MuiInputBase-root': {
     borderBottom: '2px solid black',
   }, '& .MuiInputBase-root:before': {
@@ -52,7 +52,7 @@ const Signup = () => {
         }}
       >
         <div className={'w-[55%]'}>
-          <h2 className='text-xl font-bold mb-2 text-start'>WELCOME!</h2 >
+          <p className='text-xl font-bold mb-2 text-start'>WELCOME!</p >
           <p className='text-sm text-start text-gray-400'>
             We are guessing you&apos;re bookworm like us, you&apos;re in the right place!
           </p >

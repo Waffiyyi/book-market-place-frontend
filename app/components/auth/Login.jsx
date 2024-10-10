@@ -14,9 +14,9 @@ const initialValues = {
 
 const textFieldStyles = {
   position: 'relative',
-  left: { xs: '12px', sm: '50px', md: '65px' },
-  marginLeft: { xs: '-12px', sm: '-50px', md: '-65px' },
-  width: { xs: 'calc(100% + 12px)', sm: 'calc(100% + 50px)', md: 'calc(100% + 65px)' },
+  left: { xs: '42px', sm: '50px', md: '65px' },
+  marginLeft: { xs: '-62px', sm: '-50px', md: '-65px' },
+  width: { xs: 'calc(100% + 72px)', sm: 'calc(100% + 50px)', md: 'calc(100% + 65px)' },
   '& .MuiInputBase-root': {
     borderBottom: '2px solid black',
   },

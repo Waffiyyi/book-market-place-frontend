@@ -34,10 +34,20 @@ export const categoryProperties = {
     color: '#e91e63',
     glowColor: '#f48fb1',
   },
-  'Historical Fiction': {
-    icon: '⏳',
-    color: '#ffeb3b',
-    glowColor: '#fff59d',
+  'Memoir': {
+    icon: '📝',
+    color: '#ff9800',
+    glowColor: '#ffe0b2',
+  },
+  'Cultural': {
+    icon: '🌍',
+    color: '#00c853',
+    glowColor: '#ccff90',
+  },
+  'Family Saga': {
+    icon: '👨‍👩‍👧‍👦',
+    color: '#4caf50',
+    glowColor: '#c8e6c9',
   },
   'Self-Help': {
     icon: '🧠',

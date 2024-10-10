@@ -1,18 +1,14 @@
 "use client";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from 'react';
-import {findUserCart, logout} from "@/app/redux/slice/cartSlice";
-import {bookLogoutAction} from "@/app/redux/slice/bookSlice";
-import {checkTokenExpirationMiddleware, getUser} from "@/app/redux/slice/authSlice";
+import { findUserCart } from "@/app/redux/slice/cartSlice";
+import { getUser, checkTokenExpirationMiddleware } from "@/app/redux/slice/authSlice";
 
 export default function App({ children }) {
-  const {jwt, isLoading} = useSelector((state) => state.auth);
+  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const router = useRouter();
-  useEffect(() => {
-    dispatch(checkTokenExpirationMiddleware());
-  }, [dispatch]);
 
   let localJwt = null;
   if (typeof window !== 'undefined') {
@@ -20,17 +16,28 @@ export default function App({ children }) {
   }
 
   useEffect(() => {
-    if (jwt === null && localJwt === null) {
-      router.push("/auth/login");
-    }
-  }, [router, jwt, localJwt]);
+    dispatch(checkTokenExpirationMiddleware());
+  }, [dispatch]);
 
   useEffect(() => {
-    if (jwt || localJwt) {
-      dispatch(findUserCart(localJwt));
-      dispatch(getUser(localJwt));
+    if (!localJwt) {
+      router.push("/auth/login");
+      setLoading(false);
+    } else {
+      const fetchData = async () => {
+        await Promise.all([
+          dispatch(findUserCart(localJwt)),
+          dispatch(getUser(localJwt))
+        ]);
+        setLoading(false);
+      };
+      fetchData();
     }
-  }, [localJwt, dispatch, jwt]);
+  }, [localJwt, dispatch, router]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return <>{children}</>;
 }
