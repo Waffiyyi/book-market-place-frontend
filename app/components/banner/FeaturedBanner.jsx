@@ -13,7 +13,7 @@ const FeaturedBanner = () => {
   }
 
   useEffect(() => {
-    if (jwt && isLoading) {
+    if (jwt) {
       dispatch(getFeaturedBooks(jwt));
     }
   }, [dispatch, jwt, isLoading]);
