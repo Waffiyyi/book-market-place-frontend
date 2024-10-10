@@ -99,6 +99,7 @@ const BookList = ({ title, books, onBack }) => {
           </div>
         ) : (
           books
+          .filter((book) => !selectedCategory || book.category === selectedCategory)
           .map((book) => (
             <Book
               key={book.id}
