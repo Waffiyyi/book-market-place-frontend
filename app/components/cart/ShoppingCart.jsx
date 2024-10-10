@@ -39,7 +39,14 @@ const ShoppingCart = () => {
   };
 
   const handleCheckout = () => {
-    const reqData = { cart, dispatch, jwt };
+    const reqData = {
+      cartDTO:{
+      id:cart.id,
+        userId:cart.customer?.id,
+        total:cart.total,
+        items:cart.items
+
+      }, dispatch, jwt };
     dispatch(checkoutCart(reqData));
   };
 

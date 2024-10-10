@@ -98,7 +98,7 @@ export const checkoutCart = createAsyncThunk(
   "cart/checkoutCart",
   async (reqData, {rejectWithValue}) => {
     try {
-      const {data} = await api.post(`/payment-checkout`, reqData.cart, {
+      const {data} = await api.post(`/payment-checkout`, reqData.cartDTO, {
         headers: {Authorization: `Bearer ${reqData.jwt}`},
       });
       if (data.payment_url) {

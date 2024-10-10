@@ -22,12 +22,14 @@ const CartModal = ({ open, onClose, book, subtotal }) => {
   }
   const handleCheckout = () => {
     const reqData = {
-      cart,
-      dispatch,
-      jwt
-    }
-    dispatch(checkoutCart(reqData))
-  }
+      cartDTO:{
+        id:cart.id,
+        userId:cart.customer?.id,
+        total:cart.total,
+        items:cart.items
+      }, dispatch, jwt };
+    dispatch(checkoutCart(reqData));
+  };
   return (
     <Modal open={open} onClose={onClose}>
       <Box
