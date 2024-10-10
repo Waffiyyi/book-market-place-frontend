@@ -167,10 +167,10 @@ export default function SearchClient() {
           >
             <MenuItem onClick={handleMenuClose}>
               <Link
-                href={user ? "#newsletter" : "#login"}
+                href={jwt ? "/" : "/auth/login"}
                 style={{ color: 'inherit', textDecoration: 'none' }}
               >
-                {user ? 'Newsletter' : 'Login'}
+                {jwt ? 'Dashboard' : 'Login'}
               </Link>
             </MenuItem>
             <MenuItem onClick={handleMenuClose}>
