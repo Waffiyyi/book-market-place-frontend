@@ -18,7 +18,7 @@ const BestSelling = () => {
     if (jwt) {
       dispatch(getBestSellingBooks(jwt));
     }
-  }, [dispatch, jwt]);
+  }, [dispatch, jwt, isLoading]);
 
   return (
     <div className='grid grid-cols-2 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-3'>
