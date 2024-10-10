@@ -22,7 +22,7 @@ const Success = () => {
           <Button onClick={() => router.push("/")}
                   variant={'contained'}
                   className={'py-5'}
-                  sx={{margin: "1rem 0rem", height:"20px"}}>Return to home</Button>
+                  sx={{margin: "1rem 0rem", height:"30px"}}>Return to home</Button>
         </Card>
       </div>
     </div>

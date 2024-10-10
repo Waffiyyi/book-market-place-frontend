@@ -19,7 +19,7 @@ const Fail = () => {
           <Button onClick={() => router.push("/cart")}
                   variant={'contained'}
                   className={'py-5'}
-                  sx={{margin: "1rem 0rem", marginTop:"0", height:"20px"}}>Return to cart</Button>
+                  sx={{margin: "1rem 0rem", marginTop:"0", height:"30px"}}>Return to cart</Button>
         </Card>
       </div>
     </div>

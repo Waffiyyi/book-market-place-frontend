@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
-const CartItem = ({ cartItem }) => {
+
+
+const CartItem = ({ cartItem, updateCartItems }) => {
   const [isMounted, setIsMounted] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
@@ -10,8 +13,19 @@ const CartItem = ({ cartItem }) => {
 
   if (!isMounted || !cartItem) return null;
 
+  const handleQuantityChange = async (event) => {
+    const updatedQuantity = event.target.value;
+    await updateCartItems(cartItem?.id, cartItem.book?.id, updatedQuantity);
+
+    setShowPopup(true);
+
+    setTimeout(() => {
+      setShowPopup(false);
+    }, 3000);
+  };
+
   return (
-    <div className="flex items-start mb-8">
+    <div className="flex items-start mb-8 relative">
       <Image
         src={cartItem.book?.image}
         alt={cartItem.book?.title}
@@ -28,10 +42,14 @@ const CartItem = ({ cartItem }) => {
 
         <div className="flex items-center mt-3 space-x-3">
           <label className="text-gray-400">Qty</label>
-          <select className="bg-gray-800 text-white px-3 py-1 rounded">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
+          <select
+            className="bg-gray-800 text-white px-3 py-1 rounded"
+            value={cartItem.quantity}
+            onChange={handleQuantityChange}
+          >
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
           </select>
           <button className="text-blue-400">Move to favorites</button>
         </div>
@@ -40,6 +58,12 @@ const CartItem = ({ cartItem }) => {
       <div className="text-right">
         <p className="text-lg font-bold mr-5">${cartItem.book?.price}</p>
       </div>
+
+      {showPopup && (
+        <div className="absolute bottom-0 left-0 bg-gray-800 text-white p-2 rounded-md">
+          Quantity updated!
+        </div>
+      )}
     </div>
   );
 };

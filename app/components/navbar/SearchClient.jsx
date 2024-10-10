@@ -26,28 +26,31 @@ export default function SearchClient() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [jwt, setJwt] = useState(null);
+  const [mounted, setMounted] = useState(false);
 
   const dispatch = useDispatch();
   const { cart } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.auth);
   const { books, isLoading } = useSelector((state) => state.book);
   const router = useRouter();
-  let jwt = null;
 
-  if (typeof window !== 'undefined') {
-    jwt = localStorage.getItem("jwt");
-  }
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setJwt(localStorage.getItem("jwt"));
+      setMounted(true);
+    }
+  }, []);
+
   const handleSearch = async () => {
     if (searchQuery.trim()) {
       const res = await dispatch(searchBooks({ query: searchQuery, jwt }));
       if (searchBooks.fulfilled.match(res)) {
         router.push("/book/search-result");
-        handleSearchToggle()
+        handleSearchToggle();
       }
     }
   };
-
-
 
   const handleMenuClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -63,15 +66,17 @@ export default function SearchClient() {
 
   const handleLogout = () => {
     dispatch(logoutAction());
-    router.push("/auth/login")
+    router.push("/auth/login");
     handleMenuClose();
   };
+
+  if (!mounted) return null;
 
   return (
     <AppBar position='static' sx={{ backgroundColor: 'black' }}>
       <Toolbar className='px-5 sticky top-0 z-50 py-[.8rem] lg:px-20 flex justify-between'>
         <div>
-          <IconButton onClick={jwt ? () => router.push("/"): undefined} edge='start' className='text-white'>
+          <IconButton onClick={jwt ? () => router.push("/") : undefined} edge='start' className='text-white'>
             <AutoStoriesIcon />
           </IconButton>
         </div>
@@ -118,7 +123,7 @@ export default function SearchClient() {
                   },
                 }}
               >
-                <SearchIcon  />
+                <SearchIcon />
               </IconButton>
             </Box>
           )}
@@ -134,17 +139,8 @@ export default function SearchClient() {
           </div>
 
           <div className='cursor-pointer'>
-            {user ? (
-              <Avatar
-                sx={{
-                  bgcolor: 'white',
-                  color: pink.A400,
-                }}
-              >
-                {user?.username[0].toUpperCase()}
-              </Avatar>
-            ) : (
-              <IconButton onClick={()=>router.push("/auth/login")}>
+            {!jwt && (
+              <IconButton onClick={() => router.push("/auth/login")}>
                 <Person />
               </IconButton>
             )}

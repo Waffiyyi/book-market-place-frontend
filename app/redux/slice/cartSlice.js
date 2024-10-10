@@ -33,7 +33,6 @@ export const addItemToCart = createAsyncThunk(
       const { data } = await api.put(`/cart/add`, reqData, {
         headers: { Authorization: `Bearer ${reqData.jwt}` },
       });
-      // Automatically fetch the updated cart after adding the item
       dispatch(findUserCart(reqData.jwt));
       return data;
     } catch (error) {
@@ -47,9 +46,12 @@ export const addItemToCart = createAsyncThunk(
 
 export const updateCartItem = createAsyncThunk(
   "cart/updateCartItem",
-  async (reqData, {rejectWithValue}) => {
+  async (reqData, {dispatch, rejectWithValue}) => {
     try {
-      const {data} = await api.put(`/cart-item/update`, reqData);
+      const {data} = await api.put(`/cart-item/update`, reqData, {
+        headers: { Authorization: `Bearer ${reqData.jwt}` },
+      });
+      dispatch(findUserCart(reqData.jwt));
       return data;
     } catch (error) {
       return rejectWithValue(
