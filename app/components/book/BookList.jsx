@@ -2,7 +2,16 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Book from '@/app/components/book/Book';
-import { Button, IconButton, MenuItem, Popper, Paper, ClickAwayListener, MenuList } from '@mui/material';
+import {
+  Button,
+  IconButton,
+  MenuItem,
+  Popper,
+  Paper,
+  ClickAwayListener,
+  MenuList,
+  CircularProgress,
+} from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { filterBooks, getAllCategories } from "@/app/redux/slice/bookSlice";
@@ -11,7 +20,7 @@ import { useDispatch } from "react-redux";
 
 const BookList = ({ title, books, onBack }) => {
   const router = useRouter();
-  const { categories } = useSelector((state) => state.book);
+  const { categories, isLoading } = useSelector((state) => state.book);
   const dispatch = useDispatch();
   const [selectedCategory, setSelectedCategory] = useState('');
   const [anchorEl, setAnchorEl] = useState(null);
@@ -83,19 +92,26 @@ const BookList = ({ title, books, onBack }) => {
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-6">
-        {books
-        .filter((book) => !selectedCategory || book.category === selectedCategory)
-        .map((book) => (
-          <Book
-            key={book.id}
-            id={book.id}
-            image={book.image}
-            genre={book.genre}
-            title={book.title}
-            author={book.author}
-            price={book.price}
-          />
-        ))}
+        {isLoading ? (
+          <div className="flex justify-center items-center w-full">
+            <CircularProgress color="primary" />
+            <p className="text-white">Loading books...</p>
+          </div>
+        ) : (
+          books
+          .filter((book) => !selectedCategory || book.category === selectedCategory)
+          .map((book) => (
+            <Book
+              key={book.id}
+              id={book.id}
+              image={book.image}
+              genre={book.genre}
+              title={book.title}
+              author={book.author}
+              price={book.price}
+            />
+          ))
+        )}
       </div>
     </div>
   );

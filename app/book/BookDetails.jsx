@@ -66,7 +66,7 @@ const BookDetail = () => {
             width={100}
             height={100}
             className="rounded-md w-full h-auto object-cover"
-            unoptimized={true}
+            quality={100}
           />
         </div>
       </div>
@@ -84,7 +84,9 @@ const BookDetail = () => {
             }) : 'N/A'}
           </p>
           <p className="text-sm mb-1">Category</p>
-          <p className="text-sm text-gray-600 mb-2">{book?.categories}</p>
+          <p className="text-sm text-gray-600 mb-2 gap-2">
+            {book?.categories?.join('  ')}
+          </p>
           <p className="text-sm mb-1">Ratings</p>
           <div className="mb-2">
             <Rating

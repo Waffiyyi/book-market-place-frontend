@@ -206,6 +206,7 @@ export const getFrequentlyBoughtWith = createAsyncThunk(
         headers: {
           Authorization: `Bearer ${jwt}`
         }});
+      console.log("data from frquently bought", data);
       return data;
     } catch (error) {
       return rejectWithValue(

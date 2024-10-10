@@ -5,6 +5,8 @@ import ClientProvider from "@/app/ClientProvider";
 import Navbar from "@/app/components/navbar/Navbar";
 import Footer from "@/app/components/footer/Footer";
 import Error from './error/Error'
+import {Suspense} from "react";
+import Loading from "@/app/loading";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -17,7 +19,9 @@ export default function RootLayout({ children }) {
     <ClientProvider>
       <Navbar/>
       <Error />
-      {children}
+      <Suspense fallback={<Loading/>}>
+        {children}
+      </Suspense>
     </ClientProvider>
     <Footer/>
     </body>

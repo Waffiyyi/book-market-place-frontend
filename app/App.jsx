@@ -1,11 +1,11 @@
 "use client";
-import { useDispatch } from 'react-redux';
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from 'react';
-import { findUserCart } from "@/app/redux/slice/cartSlice";
-import { getUser, checkTokenExpirationMiddleware } from "@/app/redux/slice/authSlice";
+import {useDispatch} from 'react-redux';
+import {useRouter} from "next/navigation";
+import {useEffect, useState} from 'react';
+import {findUserCart} from "@/app/redux/slice/cartSlice";
+import {getUser, checkTokenExpirationMiddleware} from "@/app/redux/slice/authSlice";
 
-export default function App({ children }) {
+export default function App({children}) {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const router = useRouter();
@@ -24,20 +24,15 @@ export default function App({ children }) {
       router.push("/auth/login");
       setLoading(false);
     } else {
-      const fetchData = async () => {
-        await Promise.all([
-          dispatch(findUserCart(localJwt)),
-          dispatch(getUser(localJwt))
-        ]);
-        setLoading(false);
-      };
-      fetchData();
+      dispatch(findUserCart(localJwt));
+      dispatch(getUser(localJwt));
+      setLoading(false);
     }
   }, [localJwt, dispatch, router]);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  // if (loading) {
+  //   return <div >Loading...</div >;
+  // }
 
   return <>{children}</>;
 }

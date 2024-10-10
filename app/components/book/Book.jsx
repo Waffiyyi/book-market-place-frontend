@@ -28,7 +28,7 @@ const Book = ({ id, image, title, author, price, genre }) => {
         width={160}
         height={160}
         className="w-full h-auto object-contain rounded-md mb-1"
-        unoptimized={true}
+        quality={100}
       />
       <span className="text-xs block mb-0 px-1" style={{ color: genreTextColor }}>
         {genre}

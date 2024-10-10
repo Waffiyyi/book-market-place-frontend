@@ -6,7 +6,7 @@ import BookList from '@/app/components/book/BookList';
 
 const BestSellingBooksPage = () => {
   const dispatch = useDispatch();
-  const { books } = useSelector((state) => state.book);
+  const { bestSellingBooks } = useSelector((state) => state.book);
 
   let jwt = null;
   if (typeof window !== 'undefined') {
@@ -19,7 +19,7 @@ const BestSellingBooksPage = () => {
     }
   }, [dispatch, jwt]);
 
-  return <BookList title="Best Selling Books" books={books} />;
+  return <BookList title="Best Selling Books" books={bestSellingBooks} />;
 };
 
 export default BestSellingBooksPage;

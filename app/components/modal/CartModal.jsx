@@ -90,6 +90,10 @@ const CartModal = ({ open, onClose, book, subtotal }) => {
                 bgcolor: '#d511e8',
                 borderRadius: 3,
                 mb: 2,
+                '&.Mui-disabled': {
+                  bgcolor: 'purple',
+                  color: 'white',
+                }
               }}
               variant='contained'
               color='secondary'
