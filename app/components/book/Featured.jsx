@@ -18,7 +18,7 @@ const Featured = () => {
     if (jwt) {
       dispatch(getFeaturedBooks(jwt));
     }
-  }, [dispatch, jwt, isLoading]);
+  }, [dispatch, jwt]);
 
   const displayedBooks = featuredBooks.slice(0, 6);
 

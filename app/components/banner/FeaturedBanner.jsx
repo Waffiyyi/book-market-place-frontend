@@ -6,7 +6,7 @@ import {getBestSellingBooks, getFeaturedBooks} from "@/app/redux/slice/bookSlice
 
 const FeaturedBanner = () => {
   const dispatch = useDispatch();
-  const { featuredBooks, isLoading } = useSelector((state) => state.book);
+  const { featuredBooks } = useSelector((state) => state.book);
   let jwt = null;
   if (typeof window !== 'undefined') {
     jwt = localStorage.getItem("jwt");
@@ -16,7 +16,7 @@ const FeaturedBanner = () => {
     if (jwt) {
       dispatch(getFeaturedBooks(jwt));
     }
-  }, [dispatch, jwt, isLoading]);
+  }, [dispatch, jwt]);
 
   const initialBooks = featuredBooks.slice(0, 10);
   const [currentIndex, setCurrentIndex] = useState(0);

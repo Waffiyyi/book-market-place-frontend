@@ -19,7 +19,7 @@ const FeaturedCategory = () => {
     if (jwt) {
       dispatch(getFeaturedCategories(jwt));
     }
-  }, [dispatch, jwt, isLoading]);
+  }, [dispatch, jwt]);
 
   const displayedCategories = categories.slice(0, 4);
 
