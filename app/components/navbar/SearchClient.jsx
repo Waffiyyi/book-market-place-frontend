@@ -63,6 +63,7 @@ export default function SearchClient() {
 
   const handleLogout = () => {
     dispatch(logoutAction());
+    router.push("/auth/login")
     handleMenuClose();
   };
 
