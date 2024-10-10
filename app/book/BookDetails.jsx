@@ -76,9 +76,9 @@ const BookDetail = () => {
           <p className="text-sm mb-1">Author</p>
           <p className="text-sm text-gray-600 mb-2">{book?.author}</p>
           <p className="text-sm mb-1">Date Released</p>
-          <p className="text-sm text-gray-600 mb-2">{book?.releaseDate}</p>
+          <p className="text-sm text-gray-600 mb-2">{book?.dateReleased}</p>
           <p className="text-sm mb-1">Category</p>
-          <p className="text-sm text-gray-600 mb-2">{book?.category}</p>
+          <p className="text-sm text-gray-600 mb-2">{book?.categories}</p>
           <p className="text-sm mb-1">Ratings</p>
           <div className="mb-2">
             <Rating

@@ -15,7 +15,7 @@ const initialValues = {
 const textFieldStyles = {
   position: 'relative',
   right: { xs: '34px', sm: '54px', md: '35px' },
-  marginLeft: { xs: '-12px', sm: '-12px', md: '-35px' },
+  marginLeft: { xs: '-25px', sm: '-12px', md: '-35px' },
   width: { xs: 'calc(100% + 74px)', sm: 'calc(100% + 84px)', md: 'calc(100% + 65px)' },
   '& .MuiInputBase-root': {
     borderBottom: '2px solid black',
@@ -43,10 +43,10 @@ const Signup = () => {
   };
 
 
-  return (<div className='flex justify-center items-center h-screen bg-[#0D0D0D] px-4 sm:px-8 '>
+  return (<div className='flex justify-center items-center h-screen bg-[#0D0D0D] px-6 sm:px-8'>
     <div className='relative shadow-lg w-[700px] h-[500px] flex overflow-hidden'>
       <div
-        className='bg-black p-8 flex flex-col justify-center text-white relative z-10'
+        className='bg-black p-8 flex flex-col justify-center text-white relative z-10 px-4'
         style={{
           clipPath: 'polygon(0 0, 100% 0, 35% 100%, 0% 100%)', textAlign: 'left', width: '60%',
         }}

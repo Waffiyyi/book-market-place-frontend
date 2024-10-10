@@ -14,8 +14,8 @@ export default function Footer() {
       <div className='container mx-auto px-4'>
         <div className='flex flex-col md:flex-row justify-between items-center md:items-start'>
           <div className='mb-4 md:mb-0 text-center md:text-left'>
-            <IconButton sx={{cursor:"default"}} edge='start' className='text-white'>
-              <AutoStoriesIcon fontSize="large" sx={{marginBottom:"13px", cursor:"default"}}/>
+            <IconButton sx={{cursor:"default", color:"white"}} edge='start'>
+              <AutoStoriesIcon fontSize="large" sx={{marginBottom:"13px", cursor:"default", color:"white"}}/>
             </IconButton >
             <div className='flex justify-center md:justify-start mb-4 space-x-4'>
 
