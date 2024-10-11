@@ -73,7 +73,7 @@ const CartModal = ({ open, onClose, book, subtotal }) => {
             width={100}
             height={100}
             className='rounded-md'
-            unoptimized={true}
+            quality={100}
           />
         </div>
 
