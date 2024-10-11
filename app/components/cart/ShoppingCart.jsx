@@ -44,7 +44,7 @@ const ShoppingCart = () => {
         id:cart?.id,
         userId:cart?.userId,
         total:cart?.total,
-        items:cart?.items
+        items:cart.items
 
       }, dispatch, jwt };
     dispatch(checkoutCart(reqData));
