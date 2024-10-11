@@ -4,10 +4,11 @@ import {useDispatch, useSelector} from "react-redux";
 import {getFeaturedCategories} from "@/app/redux/slice/bookSlice";
 import CategoryList from "@/app/components/category/CategoryList";
 import {categoryProperties} from "@/app/components/category/availableCategoryListProps";
+import {CircularProgress} from "@mui/material";
 
 const FeaturedCategories = () => {
   const dispatch = useDispatch();
-  const { categories } = useSelector((state) => state.book);
+  const {categories, isLoading} = useSelector((state) => state.book);
 
   console.log("categories", categories)
   let jwt = null;
@@ -23,9 +24,15 @@ const FeaturedCategories = () => {
   }, [dispatch, jwt]);
   return (
     <div >
-      <CategoryList categories={categories}/>
+      {isLoading ? (
+        <div className="flex justify-center items-center w-full h-full">
+          <CircularProgress color="primary"/>
+          <p className="text-white ml-2">Loading featured categories...</p >
+        </div >
+      ) : (
+        <CategoryList categories={categories}/>
+      )}
     </div >
   );
 };
-
 export default FeaturedCategories;

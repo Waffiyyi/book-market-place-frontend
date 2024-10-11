@@ -120,7 +120,7 @@ const BookDetail = () => {
       </div>
 
       <CartModal
-        open={modalOpen} onClose={handleCloseModal} book={book} subtotal={cart?.total}
+        open={modalOpen} onClose={handleCloseModal} book={book} subtotal={cart?.total.toFixed(2)}
       />
     </div>
   );

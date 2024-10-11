@@ -67,7 +67,7 @@ const ShoppingCart = () => {
 
           <div className="flex justify-end items-center gap-3 mt-1 mr-3 sm:mr-5 mb-5">
             <p className="text-sm sm:text-base font-light">Subtotal</p>
-            <p className="text-base sm:text-lg font-bold">${cart?.total}</p>
+            <p className="text-base sm:text-lg font-bold">${cart?.total.toFixed(2)}</p>
           </div>
 
           <Button

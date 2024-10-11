@@ -23,7 +23,7 @@ const FrequentlyBoughtBooks = () => {
       {books.length === 0 ? (
         <p className={'text-gray-400'}>You have not purchased a book from any author.</p>
       ) : (
-        <div className='grid grid-cols-6 sm:grid-cols-2  gap-3'>
+        <div className='grid grid-cols-2 lg:grid-cols-6 sm:grid-cols-2  gap-3'>
           {books.map((book) => (
             <Book
               key={book.id}
