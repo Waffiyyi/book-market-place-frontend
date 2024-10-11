@@ -83,8 +83,6 @@ export const searchBooks = createAsyncThunk(
   "book/searchBooks",
   async ({ query, jwt }, { rejectWithValue }) => {
     try {
-      console.log("jwt in thunk", jwt)
-      console.log("query in thunk", query)
       const { data } = await api.get(
         `/search-book?query=${query}`,
 
@@ -94,6 +92,8 @@ export const searchBooks = createAsyncThunk(
           },
         }
       );
+      console.log("jwt in thunk", jwt)
+      console.log("query in thunk", query)
       return data;
     } catch (error) {
       return rejectWithValue(

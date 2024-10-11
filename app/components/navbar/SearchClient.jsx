@@ -44,7 +44,7 @@ export default function SearchClient() {
   }, []);
 
   const handleSearch = async () => {
-    if (searchQuery.trim()) {
+    if (jwt && searchQuery.trim()) {
       const res = await dispatch(searchBooks({query: searchQuery, jwt}));
       if (searchBooks.fulfilled.match(res)) {
         router.push("/book/search-result");
@@ -187,10 +187,10 @@ export default function SearchClient() {
           >
             <MenuItem onClick={handleMenuClose}>
               <Link
-                href={jwt ? "/" : "/auth/login"}
+                href={jwt ? "#newsletter" : "/auth/login"}
                 style={{color: 'inherit', textDecoration: 'none'}}
               >
-                {jwt ? 'Dashboard' : 'Login'}
+                {jwt ? 'Newsletter' : 'Login'}
               </Link>
             </MenuItem>
             <MenuItem onClick={handleMenuClose}>
