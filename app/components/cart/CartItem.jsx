@@ -29,10 +29,10 @@ const CartItem = ({ cartItem, updateCartItems }) => {
       <Image
         src={cartItem.book?.image}
         alt={cartItem.book?.title}
-        width={80}
-        height={120}
+        width={100}
+        height={100}
         className="rounded-md"
-        unoptimized
+        quality={100}
       />
 
       <div className="ml-4 flex-1">
