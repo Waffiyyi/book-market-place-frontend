@@ -5,7 +5,7 @@ const Newsletter = () => {
   return (
     <div className={'bg-[#0D0D0D]'}>
       <div>
-        <p className={'text-center text-gray-600 mb-2'}>Newsletter</p>
+        <p id={"newsletter"} className={'text-center text-gray-600 mb-2'}>Newsletter</p>
         <h1 className={'text-center text-white mb-3 text-xl'}>
           Stay updated with the <span className={'block mt-0.5'}>Latest News!</span>
         </h1>
@@ -31,7 +31,7 @@ const Newsletter = () => {
               color: "black",
               borderRadius: '50px',
               padding: '10px 24px',
-              marginLeft: '-21px',
+              marginLeft: '-31px',
               border: '0.7px solid rgba(255, 255, 255, 0.5)',
             }}
           >

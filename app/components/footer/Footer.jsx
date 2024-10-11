@@ -46,7 +46,7 @@ export default function Footer() {
             </div >
             <div >
               <h6 id={"contact"} className='font-semibold mb-2'>Contact Us</h6 >
-              <Link href={'#login'} className='hover:text-gray-400 cursor-pointer mb-2'>Subscribe</Link >
+              <p id={"newsletter"} className='hover:text-gray-400 cursor-pointer mb-2'>Subscribe</p >
             </div >
           </div >
         </div >
