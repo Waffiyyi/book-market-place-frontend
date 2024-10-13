@@ -21,16 +21,18 @@ const CartModal = ({ open, onClose, book, subtotal }) => {
     jwt = localStorage.getItem("jwt");
   }
   const handleCheckout = useCallback(() => {
+    if (!cart) return;
     const reqData = {
       cartDTO: {
-        id: cart?.id,
-        userId: cart?.userId,
+        id: cart.id,
+        userId: cart.userId,
         total: cart.total,
         items: cart.items,
       },
       dispatch,
       jwt,
     };
+    console.log("Checkout Total:", cart.total);
     dispatch(checkoutCart(reqData));
   }, [cart, dispatch, jwt]);
   return (

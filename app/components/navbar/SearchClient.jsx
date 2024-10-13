@@ -27,21 +27,23 @@ export default function SearchClient() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [jwt, setJwt] = useState(null);
   const [mounted, setMounted] = useState(false);
 
   const dispatch = useDispatch();
   const {cart} = useSelector((state) => state.cart);
   const {user} = useSelector((state) => state.auth);
-  const {books, isLoading} = useSelector((state) => state.book);
   const router = useRouter();
+  let jwt = null;
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      setJwt(localStorage.getItem("jwt"));
       setMounted(true);
     }
   }, []);
+
+  if (typeof window !== 'undefined') {
+    jwt = localStorage.getItem("jwt");
+  }
 
   const handleSearch = async () => {
     if (jwt && searchQuery.trim()) {
@@ -82,7 +84,7 @@ export default function SearchClient() {
       <Toolbar className='px-5 sticky top-0 z-50 py-[.8rem] lg:px-20 flex justify-between'>
         <div>
           <IconButton
-            onClick={jwt ? () => router.push("/") : undefined} edge='start'
+            onClick={jwt ? handleAvatarClick : undefined} edge='start'
             className='text-white'
           >
             <AutoStoriesIcon />
