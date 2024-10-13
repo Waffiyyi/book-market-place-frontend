@@ -24,8 +24,6 @@ const ShoppingCart = () => {
     setIsMounted(true);
   }, []);
 
-  if (!isMounted) return null;
-
   const updateCartItems = (id, bookId, quantity) => {
     return new Promise((resolve) => {
       const reqData = {
@@ -37,8 +35,7 @@ const ShoppingCart = () => {
       dispatch(updateCartItem(reqData)).then(resolve);
     });
   };
-
-  const handleCheckout = () => {
+  const handleCheckout = useCallback(() => {
     const reqData = {
       cartDTO: {
         id: cart?.id,
@@ -50,8 +47,8 @@ const ShoppingCart = () => {
       jwt,
     };
     dispatch(checkoutCart(reqData));
-  };
-
+  }, [cart, dispatch, jwt]);
+  if (!isMounted) return null;
   return (
     <div className="bg-black text-white max-w-5xl mx-auto p-4 sm:p-6 md:p-8 rounded-lg shadow-lg">
       <div className="flex flex-col lg:flex-row justify-between">
