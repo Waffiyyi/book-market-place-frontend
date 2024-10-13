@@ -28,19 +28,19 @@ export const findUserCart = createAsyncThunk(
 
 export const addItemToCart = createAsyncThunk(
   "cart/addItemToCart",
-  async ({ reqData }, { dispatch, rejectWithValue }) => {
+  async ({reqData}, {dispatch, rejectWithValue}) => {
     try {
-      const { data } = await api.put(`/cart/add`, reqData, {
-        headers: { Authorization: `Bearer ${reqData.jwt}` },
+      const {data} = await api.put(`/cart/add`, reqData, {
+        headers: {Authorization: `Bearer ${reqData.jwt}`},
       });
       dispatch(findUserCart(reqData.jwt));
       return data;
     } catch (error) {
       return rejectWithValue(
-        error.response?.data?.message || error.message
+        error.response?.data?.message || error.message,
       );
     }
-  }
+  },
 );
 
 
@@ -49,7 +49,7 @@ export const updateCartItem = createAsyncThunk(
   async (reqData, {dispatch, rejectWithValue}) => {
     try {
       const {data} = await api.put(`/cart-item/update`, reqData, {
-        headers: { Authorization: `Bearer ${reqData.jwt}` },
+        headers: {Authorization: `Bearer ${reqData.jwt}`},
       });
       dispatch(findUserCart(reqData.jwt));
       return data;
@@ -117,12 +117,8 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     logout: (state) => {
-      localStorage.removeItem("jwt");
       return {
-        ...state,
-        cartItems: [],
-        cart: null,
-        error: null,
+        ...initialState,
       };
     },
     clearError: (state) => {
@@ -211,5 +207,5 @@ const cartSlice = createSlice({
   },
 });
 
-export const {logout, clearError} = cartSlice.actions;
+export const {logout: logoutCart, clearError} = cartSlice.actions;
 export default cartSlice.reducer;

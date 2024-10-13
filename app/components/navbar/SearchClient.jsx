@@ -19,7 +19,7 @@ import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import {Person} from '@mui/icons-material';
 import {pink} from '@mui/material/colors';
 import {useSelector, useDispatch} from 'react-redux';
-import {logoutAction} from "@/app/redux/slice/authSlice";
+import { logoutUser} from "@/app/redux/slice/authSlice";
 import {useRouter} from "next/navigation";
 import {searchBooks} from "@/app/redux/slice/bookSlice";
 
@@ -66,7 +66,7 @@ export default function SearchClient() {
   };
 
   const handleLogout = () => {
-    dispatch(logoutAction());
+    dispatch(logoutUser());
     router.push("/auth/login");
     handleMenuClose();
   };

@@ -222,22 +222,11 @@ export const bookSlice = createSlice({
   name: "book",
   initialState,
   reducers: {
-    resetBook: (state) => {
-      state.book = null;
-      state.success = false;
-      state.successMessage = "";
+    logout: (state) => {
+      return {...initialState};
     },
     clearError: (state) => {
       state.error = null;
-    },
-    logout: (state) => {
-      localStorage.removeItem("jwt");
-      return {
-        ...state,
-        cartItems: [],
-        cart: null,
-        error: null,
-      };
     },
   },
   extraReducers: (builder) => {
@@ -380,5 +369,5 @@ export const bookSlice = createSlice({
   },
 });
 
-export const {resetBook, logout: bookLogoutAction, clearError} = bookSlice.actions;
+export const { logout: logoutBooks, clearError} = bookSlice.actions;
 export default bookSlice.reducer;
