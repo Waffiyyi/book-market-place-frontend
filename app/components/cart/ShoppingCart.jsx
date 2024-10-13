@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect, useCallback} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "@mui/material/Button";
 import { Divider } from "@mui/material";
@@ -40,13 +40,15 @@ const ShoppingCart = () => {
 
   const handleCheckout = () => {
     const reqData = {
-      cartDTO:{
-        id:cart?.id,
-        userId:cart?.userId,
-        total:cart?.total,
-        items:cart.items
-
-      }, dispatch, jwt };
+      cartDTO: {
+        id: cart?.id,
+        userId: cart?.userId,
+        total: cart.total,
+        items: cart.items,
+      },
+      dispatch,
+      jwt,
+    };
     dispatch(checkoutCart(reqData));
   };
 

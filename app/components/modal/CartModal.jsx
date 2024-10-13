@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useCallback} from "react";
 import Image from "next/image";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
@@ -20,16 +20,19 @@ const CartModal = ({ open, onClose, book, subtotal }) => {
   if (typeof window !== 'undefined') {
     jwt = localStorage.getItem("jwt");
   }
-  const handleCheckout = () => {
+  const handleCheckout = useCallback(() => {
     const reqData = {
-      cartDTO:{
-        id:cart?.id,
-        userId:cart?.userId,
-        total:cart?.total,
-        items:cart.items
-      }, dispatch, jwt };
+      cartDTO: {
+        id: cart?.id,
+        userId: cart?.userId,
+        total: cart.total,
+        items: cart.items,
+      },
+      dispatch,
+      jwt,
+    };
     dispatch(checkoutCart(reqData));
-  };
+  }, [cart, dispatch, jwt]);
   return (
     <Modal open={open} onClose={onClose}>
       <Box
