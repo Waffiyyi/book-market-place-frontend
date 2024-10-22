@@ -14,6 +14,7 @@ const ShoppingCart = () => {
   const dispatch = useDispatch();
   const { cart, cartItems, loading } = useSelector((state) => state.cart);
   const [isMounted, setIsMounted] = useState(false);
+  console.log("cart in shooping cart", cart)
   let jwt = null;
 
   if (typeof window !== 'undefined') {

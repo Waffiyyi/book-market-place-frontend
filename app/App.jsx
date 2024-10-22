@@ -1,14 +1,14 @@
 "use client";
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {useRouter} from "next/navigation";
 import {useEffect, useState} from 'react';
 import {findUserCart} from "@/app/redux/slice/cartSlice";
 import {getUser, checkTokenExpirationMiddleware} from "@/app/redux/slice/authSlice";
 
 export default function App({children}) {
-  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const router = useRouter();
+  const {jwt} = useSelector((state) => state.auth);
 
   let localJwt = null;
   if (typeof window !== 'undefined') {
@@ -20,19 +20,13 @@ export default function App({children}) {
   }, [dispatch]);
 
   useEffect(() => {
-    if (!localJwt) {
+    if (!jwt || !localJwt) {
       router.push("/auth/login");
-      setLoading(false);
     } else {
       dispatch(findUserCart(localJwt));
       dispatch(getUser(localJwt));
-      setLoading(false);
     }
-  }, [localJwt, dispatch, router]);
-
-  // if (loading) {
-  //   return <div >Loading...</div >;
-  // }
+  }, [localJwt, dispatch, router, jwt]);
 
   return <>{children}</>;
 }
