@@ -15,12 +15,13 @@ export default function App({children}) {
     localJwt = localStorage.getItem("jwt");
   }
 
+
   useEffect(() => {
     dispatch(checkTokenExpirationMiddleware());
   }, [dispatch]);
 
   useEffect(() => {
-    if (!jwt || !localJwt) {
+    if (!jwt && !localJwt) {
       router.push("/auth/login");
     } else {
       dispatch(findUserCart(localJwt));
