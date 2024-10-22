@@ -22,13 +22,13 @@ const Book = ({ id, image, title, author, price, genre }) => {
       className="bg-black w-full h-auto max-w-[160px] text-white cursor-pointer"
       onClick={handleBookClick}
     >
-      <Image
+      <img
         src={image}
         alt={title}
-        width={160}
-        height={160}
+        // width={160}
+        // height={160}
         className="w-full h-auto object-contain rounded-md mb-1"
-        quality={100}
+        // quality={100}
       />
       <span className="text-xs block mb-0 px-1" style={{ color: genreTextColor }}>
         {genre}

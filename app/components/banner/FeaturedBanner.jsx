@@ -58,14 +58,14 @@ const FeaturedBanner = () => {
         <div className="absolute top-[60%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl flex justify-center">
           <div className="relative flex justify-center">
             <div className="relative w-[200px] h-[300px]">
-              <img
+              <Image
                 src={initialBooks[(currentIndex + 1) % initialBooks.length]?.image}
                 alt={initialBooks[(currentIndex + 1) % initialBooks.length]?.title}
                 width={200}
                 height={100}
                 className="rounded-md transform transition duration-300 ease-in-out"
                 style={{ zIndex: 2, transform: 'rotate(-10deg)' }}
-                // quality={100}
+                quality={100}
               />
               <Image
                 src={initialBooks[(currentIndex + 2) % initialBooks.length]?.image}
