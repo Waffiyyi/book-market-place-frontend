@@ -65,7 +65,7 @@ const FeaturedBanner = () => {
                 height={100}
                 className="rounded-md transform transition duration-300 ease-in-out"
                 style={{ zIndex: 2, transform: 'rotate(-10deg)' }}
-                quality={100}
+                // quality={100}
               />
               <Image
                 src={initialBooks[(currentIndex + 2) % initialBooks.length]?.image}
