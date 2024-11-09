@@ -30,7 +30,7 @@ const FeaturedCategories = () => {
           <p className="text-white ml-2">Loading featured categories...</p >
         </div >
       ) : (
-        <CategoryList categories={categories}/>
+        <CategoryList categories={categories.slice(0,15)}/>
       )}
     </div >
   );
