@@ -4,12 +4,12 @@ export const categoryProperties = {
     color: '#6d4c41',
     glowColor: '#d7ccc8',
   },
-  'Non-Fiction': {
-    icon: '📘',
+  'Thriller': {
+    icon: '😧',
     color: '#2e7d32',
     glowColor: '#c8e6c9',
   },
-  'Mystery & Thriller': {
+  'Mystery': {
     icon: '🕵️',
     color: '#37474f',
     glowColor: '#b0bec5',
@@ -59,7 +59,7 @@ export const categoryProperties = {
     color: '#2e3b42',
     glowColor: '#00e5ff',
   },
-  'Children\'s Books': {
+  'Classic': {
     icon: '📚',
     color: '#ff9800',
     glowColor: '#ffe0b2',
@@ -114,13 +114,13 @@ export const categoryProperties = {
     color: '#2196f3',
     glowColor: '#bbdefb',
   },
-  'Reference': {
-    icon: '📖',
+  '"Dystopian",': {
+    icon: '🤿',
     color: '#757575',
     glowColor: '#bdbdbd',
   },
-  'Parenting & Family': {
-    icon: '👪',
+  'War': {
+    icon: '🪖',
     color: '#9e9d24',
     glowColor: '#dce775',
   },
