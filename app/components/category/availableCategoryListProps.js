@@ -114,7 +114,7 @@ export const categoryProperties = {
     color: '#2196f3',
     glowColor: '#bbdefb',
   },
-  '"Dystopian",': {
+  'Dystopian,': {
     icon: '🤿',
     color: '#757575',
     glowColor: '#bdbdbd',
