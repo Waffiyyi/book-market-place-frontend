@@ -47,9 +47,9 @@ export default function SearchClient() {
 
   const handleSearch = async () => {
     if (jwt && searchQuery.trim()) {
+      router.push("/book/search-result");
       const res = await dispatch(searchBooks({query: searchQuery, jwt}));
       if (searchBooks.fulfilled.match(res)) {
-        router.push("/book/search-result");
         handleSearchToggle();
       }
     }
